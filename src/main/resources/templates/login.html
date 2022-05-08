@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign in</title>
+    <head th:replace="fragments/header.html :: head"/>
+</head>
+<body>
+<section>
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <div class="col-4 mt-5">
+                <label for="login"><h1>Пожалуйста идентифицируйтесь</h1></label>
+                <form method="post" th:action="@{/login}" id="login">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="username" name="j_username" placeholder="Ник">
+                        <input type="password" class="form-control" id="password" name="j_password" placeholder="Пароль">
+                    </div>
+                    <div class="">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Войти</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<script th:replace="fragments/footer.html :: scripts"/>
+</body>
+</html>
