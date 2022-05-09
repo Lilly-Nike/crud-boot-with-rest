@@ -1,5 +1,6 @@
 package ru.kata.spring.boot_security.demo.controller;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -63,8 +64,8 @@ public class UserController {
     }
 
     @GetMapping("/admin/delete/{id}")
-    public String delete(@PathVariable Long id) {
-        userService.delete(id);
+    public String delete(@PathVariable Long id, @AuthenticationPrincipal User user) {
+        if (!user.getId().equals(id)) userService.delete(id);
         return "redirect:/admin";
     }
 }

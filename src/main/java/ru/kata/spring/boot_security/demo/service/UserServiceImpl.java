@@ -40,21 +40,22 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void save(User user) {
+    public Long save(User user) {
         if (user.getPassword() != null && !user.getPassword().isBlank()) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
         }
-        userDao.save(user);
+        return userDao.save(user);
     }
 
     @Override
     @Transactional
-    public void update(User user) {
+    public Long update(User user) {
         if (user.getPassword() != null && !user.getPassword().isBlank()) {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
         }
         userDao.update(user);
         SecurityUtil.refreshRolesForAuthenticatedUser(user);
+        return user.getId();
     }
 
     @Override
