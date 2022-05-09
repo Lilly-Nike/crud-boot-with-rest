@@ -27,7 +27,7 @@ public class UserRestController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public UserDto getById(@PathVariable Long id) {
         var user = userService.findById(id);
         return ModelMapper.userDtoByUser(user);
@@ -43,7 +43,7 @@ public class UserRestController {
         return userService.update(ModelMapper.userByUserDto(userDto));
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public Long delete(@PathVariable Long id) {
         userService.delete(id);
         return id;
